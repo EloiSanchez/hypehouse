@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: raw_yt
+    database: hh
+    schema: production
+
+    tables:
+      - name: raw_yt_comments
+      - name: raw_yt_likes
+      - name: raw_yt_videos
+      - name: raw_yt_views
+
+      
