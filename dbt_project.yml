@@ -36,6 +36,6 @@ models:
     clean_yt_stages:
       materialized: view
       schema: stages
-    base_wh:
+    base_warehouse:
       materialized: table
       schema: warehouse
