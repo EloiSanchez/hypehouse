@@ -4,3 +4,4 @@ SELECT DISTINCT
 FROM 
     {{ ref('stg_yt_videos') }}, 
     TABLE(FLATTEN(SPLIT(TRIM(video_tags, '[]'), '|'))) tag_list
+WHERE tag_name != 'none'

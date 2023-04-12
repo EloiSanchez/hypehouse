@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: tbl_videos
+    columns:
+      - name: video_id
+        tests:
+          - unique
+          - not_null
+      - name: channel_id
+        tests:
+          - relationships:
+              to: ref('tbl_channels')
+              field: channel_id
+  - name: tbl_channels
+    columns:
+      - name: channel_id
+        tests:
+          - unique
+          - not_null
+  - name: tbl_trending_day
+    tests:
+      - unique:
+          column_name: "video_id || '-' || trending_date"
+    columns:
+      - name: video_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('tbl_videos')
+              field: video_id
+      - name: trending_date
+        tests:
+          - not_null
+  - name: tbl_tags
+    tests:
+      - unique:
+          column_name: "video_id || '-' || tag_name"
+    columns:
+      - name: video_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('tbl_videos')
+              field: video_id
+      - name: tag_name
+        tests:
+          - not_null
