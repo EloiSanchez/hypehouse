@@ -28,11 +28,14 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-# In this example config, we tell dbt to build all models in the example/ directory
-# as tables. These settings can be overridden in the individual model files
-# using the `{{ config(...) }}` macro.
 models:
   hypehouse:
     yt_stages:
       materialized: view
       schema: stages
+    clean_yt_stages:
+      materialized: view
+      schema: stages
+    base_wh:
+      materialized: table
+      schema: warehouse

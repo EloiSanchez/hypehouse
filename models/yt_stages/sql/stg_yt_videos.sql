@@ -20,7 +20,8 @@ SELECT
     src:title_for_client_HyPeHoUsE::varchar as title,
     TO_DATE(src:trending_date_for_client_HyPeHoUsE::varchar, 'YY.DD.MM') as trending_date,
     src:comment_count_for_client_HyPeHoUsE::int as comment_count,
-    src:tags_for_client_HyPeHoUsE::varchar as video_tags
+    src:tags_for_client_HyPeHoUsE::varchar as video_tags,
+    loaded_date
 FROM unique_videos
 WHERE 1 = 1
     AND video_id != 'video_id'
