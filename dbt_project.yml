@@ -31,11 +31,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   hypehouse:
     yt_stages:
-      materialized: view
-      schema: stages
+      +materialized: view
+      +schema: stages
     clean_yt_stages:
-      materialized: view
-      schema: stages
+      +materialized: view
+      +schema: stages
     base_warehouse:
-      materialized: table
-      schema: warehouse
+      +materialized: table
+      +schema: warehouse
+    marts:
+      +materialized: table
+      analysis:
+        +schema: analysis
