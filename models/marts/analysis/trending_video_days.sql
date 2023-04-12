@@ -7,7 +7,7 @@ SELECT
     MIN(trending_date) AS start_trending,
     start_trending + days_trending - 1 AS end_trending,
     CASE
-        WHEN end_trending = (SELECT MAX(trending_date) FROM tbl_trending_day) THEN TRUE
+        WHEN end_trending = (SELECT MAX(trending_date) FROM {{ ref('tbl_trending_day') }}) THEN TRUE
         ELSE FALSE
     END AS currently_trending
 FROM trending_day_table
