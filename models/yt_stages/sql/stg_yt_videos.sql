@@ -10,11 +10,11 @@ SELECT
         ELSE src:"channelTitle                                      _for_client_HyPeHoUsE"::varchar 
     END as channel_title,
     src:comments_disabled_for_client_HyPeHoUsE::boolean as comments_disabled,
-    CONVERT_TIMEZONE(
+    TO_TIMESTAMP_TZ(CONVERT_TIMEZONE(
         'UTC',
         'Europe/Brussels',
         TO_TIMESTAMP(src:publishedAt_for_client_HyPeHoUsE::varchar, 'YYYY-MM-DDTHH:MI:SSZ')
-        ) as published_at
+        )) as published_at
         ,
     src:ratings_disabled_for_client_HyPeHoUsE::boolean as ratings_disabled,
     src:title_for_client_HyPeHoUsE::varchar as title,
