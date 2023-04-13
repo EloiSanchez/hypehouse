@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: raw_yt
-    database: hh
-    schema: production
+    database: hh_raw_data
+    schema: yt_trending_us
 
     tables:
       - name: raw_yt_comments
