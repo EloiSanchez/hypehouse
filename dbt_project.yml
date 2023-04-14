@@ -32,10 +32,10 @@ models:
   hypehouse:
     yt_stages:
       +materialized: view
-      +schema: stages
+      +schema: staging
     clean_yt_stages:
       +materialized: view
-      +schema: stages
+      +schema: staging
     base_warehouse:
       +materialized: table
       +schema: warehouse
@@ -43,3 +43,6 @@ models:
       +materialized: table
       analysis:
         +schema: analysis
+
+seeds:
+  +schema: seeds
