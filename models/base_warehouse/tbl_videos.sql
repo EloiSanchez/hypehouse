@@ -16,7 +16,7 @@ SELECT DISTINCT
     videos.ratings_disabled,
     comments.comment_count as thumbnail_link
 FROM videos
-    FULL OUTER JOIN comments
+    LEFT JOIN comments
         ON videos.video_id = comments.video_id
     LEFT JOIN category_dict
         ON videos.category_id = category_dict.category_id
