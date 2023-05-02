@@ -1,8 +1,11 @@
 WITH unique_videos AS (
-    SELECT DISTINCT * FROM {{ source('raw_yt', 'raw_yt_videos') }}
+    SELECT DISTINCT 
+        parsed.value AS src,
+        loaded_date
+    FROM {{ source('raw_yt', 'raw_yt_videos_v2') }} AS tab, table(flatten(tab.src:data)) AS parsed
 ),
 parsed_videos AS (
-    SELECT
+    SELECT DISTINCT
         src:video_id_for_client_HyPeHoUsE::varchar as video_id,
         src:categoryId_for_client_HyPeHoUsE::varchar as category_id,
         src:channelId_for_client_HyPeHoUsE:: varchar as channel_id,
@@ -18,17 +21,14 @@ parsed_videos AS (
             )) as published_at
             ,
         src:ratings_disabled_for_client_HyPeHoUsE::boolean as ratings_disabled,
-        MAX(src:title_for_client_HyPeHoUsE::varchar) as title,
+        src:title_for_client_HyPeHoUsE::varchar as title,
         TRY_TO_DATE(src:trending_date_for_client_HyPeHoUsE::varchar, 'YY.DD.MM') as trending_date,
         src:tags_for_client_HyPeHoUsE::varchar as video_tags,
-        MAX(src:comment_count_for_client_HyPeHoUsE::int) as comment_count,
-        MAX(loaded_date)
+        src:thumbnail_link_for_client_HyPeHoUsE::varchar as thumbnail_link,
+        loaded_date
     FROM unique_videos
     WHERE 1 = 1
         AND video_id != 'video_id'
-    GROUP BY video_id, category_id, channel_id, channel_title, published_at,
-        comments_disabled, ratings_disabled, trending_date,
-        video_tags
 ),
 parsed_comments AS (
     SELECT DISTINCT
