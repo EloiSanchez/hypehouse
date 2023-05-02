@@ -1,0 +1,5 @@
+version: 2
+
+seeds:
+  - name: us_yt_categories
+    description: "Relates the category ID of the YT videos in the US region with a name"
