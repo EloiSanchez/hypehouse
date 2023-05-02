@@ -4,12 +4,12 @@ WITH trending_day_table AS (
 SELECT 
     video_id,
     COUNT(video_id) AS days_trending,
-    MIN(trending_date) AS start_trending,
-    start_trending + days_trending - 1 AS end_trending,
+    MIN(trending_date) AS first_trending,
+    MAX(trending_date) AS last_trending,
     CASE
-        WHEN end_trending = (SELECT MAX(trending_date) FROM {{ ref('tbl_trending_day') }}) THEN TRUE
+        WHEN last_trending >= current_date() - 1 THEN TRUE
         ELSE FALSE
     END AS currently_trending
 FROM trending_day_table
 GROUP BY video_id
-ORDER BY days_trending DESC, currently_trending DESC, end_trending DESC
+ORDER BY days_trending DESC, currently_trending DESC, last_trending DESC

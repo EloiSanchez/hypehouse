@@ -1,22 +1,18 @@
 WITH videos AS (
     SELECT * FROM {{ ref('stg_yt_videos') }}
 ),
-comments AS (
-    SELECT * FROM {{ ref('stg_yt_comments') }}
-),
 category_dict AS (
     SELECT * FROM {{ ref('us_yt_categories') }}
 )
 SELECT DISTINCT
     videos.video_id,
-    videos.channel_id,
-    category_dict.category,
-    videos.published_at,
-    videos.comments_disabled,
-    videos.ratings_disabled,
-    comments.comment_count as thumbnail_link
+    MAX_BY(videos.channel_id, trending_date) as channel_id,
+    MAX_BY(category_dict.category, trending_date) as category,
+    MAX_BY(videos.published_at, trending_date) as published_at,
+    MAX_BY(videos.comments_disabled, trending_date) as comments_disabled,
+    MAX_BY(videos.ratings_disabled, trending_date) as ratings_disabled,
+    MAX_BY(videos.thumbnail_link, trending_date) as thumbnail_link
 FROM videos
-    LEFT JOIN comments
-        ON videos.video_id = comments.video_id
     LEFT JOIN category_dict
         ON videos.category_id = category_dict.category_id
+GROUP BY videos.video_id
