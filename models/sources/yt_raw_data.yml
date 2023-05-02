@@ -6,9 +6,9 @@ sources:
     schema: yt_trending_us
 
     tables:
-      - name: raw_yt_comments
-      - name: raw_yt_likes
-      - name: raw_yt_videos
-      - name: raw_yt_views
+      - name: raw_yt_comments_v2
+      - name: raw_yt_likes_v2
+      - name: raw_yt_videos_v2
+      - name: raw_yt_views_v2
 
       
