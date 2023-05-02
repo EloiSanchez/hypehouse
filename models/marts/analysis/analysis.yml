@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: several_days_trending_videos
+    description: "Shows the videos that have been trending for at least two days"
+    columns:
+      - name: video_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              field: video_id
+              to: ref('tbl_videos')
+      - name: days_trending
+        tests:
+          - not_null
+
+  - name: trending_video_days
+    description: "Shows the first, last day and the total number of days that the video was trending, including if it still is trending"
+    columns:
+      - name: video_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              field: video_id
+              to: ref('tbl_videos')
+      - name: days_trending
+        tests:
+          - not_null
+      - name: first_trending
+        tests:
+          - not_null
+      - name: last_trending
+        tests:
+          - not_null
+      - name: currently_trending
+        tests:
+          - not_null
+
+  - name: tag_frequency
+    description: "Shows the frequency of appearance of the tags ordered by popularity"
+    columns:
+      - name: tag_name
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              field: tag_name
+              to: ref('tbl_tags')
+      - name: num_count
+        tests:
+          - not_null

@@ -6,9 +6,11 @@ sources:
     schema: yt_trending_us
 
     tables:
-      - name: raw_yt_comments_v2
-      - name: raw_yt_likes_v2
       - name: raw_yt_videos_v2
+        description: "Unparsed information about the trending popular videos. Each row contains information of a day"
+      - name: raw_yt_comments_v2
+        description: "Unparsed information about the number of comments of the trending popular videos. Each row contains information of a day"
+      - name: raw_yt_likes_v2
+        description: "Unparsed information about the number of likes of the trending popular videos. Each row contains information of a day"
       - name: raw_yt_views_v2
-
-      
+        description: "Unparsed information about the number of views of the trending popular videos. Each row contains information of a day"
