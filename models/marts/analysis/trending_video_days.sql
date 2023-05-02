@@ -4,8 +4,8 @@ WITH trending_day_table AS (
 SELECT 
     video_id,
     COUNT(video_id) AS days_trending,
-    MIN(trending_date) AS start_trending,
-    start_trending + days_trending - 1 AS end_trending,
+    MIN(trending_date) AS first_trending,
+    start_trending + days_trending - 1 AS last_trending,
     CASE
         WHEN end_trending = (SELECT MAX(trending_date) FROM {{ ref('tbl_trending_day') }}) THEN TRUE
         ELSE FALSE
