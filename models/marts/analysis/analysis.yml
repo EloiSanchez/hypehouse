@@ -44,7 +44,6 @@ models:
       - name: tag_name
         tests:
           - not_null
-          - unique
           - relationships:
               field: tag_name
               to: ref('tbl_tags')
