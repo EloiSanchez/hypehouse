@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: tbl_videos
+  - name: wh_videos
     description: "Stores the unique videos that have appeared in the top 200 trending videos at least for one day"
     columns:
       - name: video_id
@@ -11,10 +11,10 @@ models:
       - name: channel_id
         tests:
           - relationships:
-              to: ref('tbl_channels')
+              to: ref('wh_channels')
               field: channel_id
 
-  - name: tbl_channels
+  - name: wh_channels
     description: "List of channels with at least one video that reached the top 200 trending videos"
     columns:
       - name: channel_id
@@ -22,7 +22,7 @@ models:
           - unique
           - not_null
 
-  - name: tbl_trending_day
+  - name: wh_trending_day
     description: "Lists which videos where trending on which days and provides some video stats for that day"
     tests:
       - unique:
@@ -32,13 +32,13 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('tbl_videos')
+              to: ref('wh_videos')
               field: video_id
       - name: trending_date
         tests:
           - not_null
 
-  - name: tbl_tags
+  - name: wh_tags
     description: "Lists the tags of the videos that appeared in the top 200. If the video had no tags, it does not appear here."
     tests:
       - unique:
@@ -48,7 +48,7 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('tbl_videos')
+              to: ref('wh_videos')
               field: video_id
       - name: tag_name
         tests:

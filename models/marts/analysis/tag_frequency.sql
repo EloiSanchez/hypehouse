@@ -1,8 +1,8 @@
 WITH video_tags AS (
-    SELECT * FROM {{ ref('tbl_tags') }}
+    SELECT * FROM {{ ref('wh_tags') }}
 ),
 trending_day AS (
-    SELECT * FROM {{ ref('tbl_trending_day') }}
+    SELECT * FROM {{ ref('wh_trending_day') }}
 )
 SELECT
     YEAR(trending_day.trending_date) AS year,

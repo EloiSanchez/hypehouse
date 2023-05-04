@@ -33,9 +33,6 @@ models:
     yt_stages:
       +materialized: view
       +schema: staging
-    clean_yt_stages:
-      +materialized: view
-      +schema: staging
     base_warehouse:
       +materialized: table
       +schema: warehouse
