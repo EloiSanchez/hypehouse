@@ -40,6 +40,9 @@ models:
 
   - name: tag_frequency
     description: "Shows the frequency of appearance of the tags ordered by popularity"
+    tests:
+      - unique:
+          column_name: "year || '-' || week || '-' || tag_name"
     columns:
       - name: tag_name
         tests:
