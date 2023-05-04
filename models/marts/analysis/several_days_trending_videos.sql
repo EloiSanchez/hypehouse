@@ -1,5 +1,5 @@
 WITH trending_day_table AS (
-    SELECT * FROM {{ ref('tbl_trending_day') }}
+    SELECT * FROM {{ ref('wh_trending_day') }}
 )
 SELECT
     video_id,
