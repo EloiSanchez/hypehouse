@@ -13,7 +13,6 @@ comments as (
 SELECT DISTINCT
     videos.video_id,
     videos.trending_date,
-    videos.title,
     comments.comment_count,
     yt_views.view_count,
     likes.like_count
