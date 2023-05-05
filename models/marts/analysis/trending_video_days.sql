@@ -13,3 +13,4 @@ SELECT
 FROM trending_day_table
 GROUP BY video_id
 ORDER BY days_trending DESC, currently_trending DESC, last_trending DESC
+-- comment
